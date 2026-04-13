@@ -19,6 +19,15 @@ namespace CyberBot
         private void ShowHeader()
         {//start of void showheader
 
+            // CI / build server bypass
+            if (Environment.GetEnvironmentVariable("CI") == "true")
+            {
+                Console.WriteLine("CyberBot started...");
+                return;
+            }
+
+            // rest of your code continues below...
+
             //path of the logo
             string path = string.Empty;
 
@@ -40,7 +49,7 @@ namespace CyberBot
                 return;
             }
 
-            // ✅ FIX: use correct constructor
+            //  constructor
             Bitmap resized = new Bitmap(image);
             resized = new Bitmap(resized, width, height);
 
