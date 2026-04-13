@@ -12,18 +12,20 @@ namespace CyberBot
 
     {//start of public class
         static void Main(string[] args)
+        {//start of main method 
+            bool isCI = Environment.GetEnvironmentVariable("CI") == "true";
 
-        {//start of main method
+            new voice_greeting();
+            new AsciiLogo();
 
-            new voice_greeting() { };     // Playing voice greeting
-            new AsciiLogo();    // Showing ASCII + title
-
-            human_interraction collect_chats = new human_interraction();
+            if (isCI)
+            {// If running in CI environment, skip the interactive chatbot  
+                Console.WriteLine("CI Mode: Skipping interactive chatbot.");
+                return;
+            }// Otherwise, start the interactive chatbot    
 
             human_interraction bot = new human_interraction();
-            bot.Start();            // Starting chatbot
-
-            
-        }///end of the main method
+            bot.Start();
+        }//end of main method
     }//end of public class
 }//start of namespace

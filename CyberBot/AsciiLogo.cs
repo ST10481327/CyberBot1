@@ -19,15 +19,6 @@ namespace CyberBot
         private void ShowHeader()
         {//start of void showheader
 
-            // CI / build server bypass
-            if (Environment.GetEnvironmentVariable("CI") == "true")
-            {
-                Console.WriteLine("CyberBot started...");
-                return;
-            }
-
-            // rest of your code continues below...
-
             //path of the logo
             string path = string.Empty;
 
@@ -37,21 +28,22 @@ namespace CyberBot
             //now combine the paths
             path = fullpath.Replace(@"bin\Debug\", "CyberBotimage.jpg");
 
-            Bitmap image;
+            Bitmap image = null;
 
             try
-            {
+            {//try to load the image
                 image = new Bitmap(path);
-            }
+            }//end try
             catch
-            {
+            {//if it fails, show error message
                 Console.WriteLine("Image not found.");
                 return;
-            }
+            }//end catch
 
-            //  constructor
-            Bitmap resized = new Bitmap(image);
-            resized = new Bitmap(resized, width, height);
+            // Resize for better console fit
+            int width = 75;
+            int height = 35;
+            Bitmap resized = new Bitmap(image, new Size(width, height));
 
             // Default color , you can set yours before this line
             Console.ForegroundColor = ConsoleColor.Cyan;
