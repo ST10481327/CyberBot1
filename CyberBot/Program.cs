@@ -16,7 +16,7 @@ namespace CyberBot
         {//start of main method
 
             new voice_greeting() { };     // Playing voice greeting
-            new AsciiLogo();    // Showing ASCII + title
+            //new AsciiLogo();    // Showing ASCII + title
 
             human_interraction collect_chats = new human_interraction();
 
