@@ -55,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="voice_greeting\" />
+<PropertyGroup>
+  <SystemDrawingEnableUnixSupport>true</SystemDrawingEnableUnixSupport>
+</PropertyGroup>
   </ItemGroup>
   <ItemGroup>
     <Content Include="CyberBotimage.jpg" />
