@@ -1,4 +1,4 @@
-name: .NET CyberBot CI
+name: .NET CI Build
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout
       uses: actions/checkout@v4
 
     - name: Setup .NET
@@ -19,11 +19,8 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Restore dependencies
+    - name: Restore
       run: dotnet restore
 
-    - name: Build project
+    - name: Build
       run: dotnet build --configuration Release
-
-    # ✅ IMPORTANT: DO NOT RUN (your app is interactive)
-    # dotnet run would hang waiting for input
