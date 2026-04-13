@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 
 namespace CyberBot
-{
+{//start of namespace
     public class human_interraction
-    {
+    {//start of public class
         string name;
 
         // RESPONSE LISTS
@@ -17,20 +17,21 @@ namespace CyberBot
 
         //  CONSTRUCTOR (LIKE YOUR voice_greeting CLASS)
         public human_interraction()
-        {
+        {// start of constructor
             LoadResponses(); // auto-load when object is created
-        }
+        }// end of constructor
 
         public void Start()
-        {
+        {//start of void start
             AskName();
             WelcomeUser();
             Chat();
-        }
+        }//end of void start
 
         // LOAD RESPONSES
         void LoadResponses()
-        {
+        {//start of void load responses
+
             //SAFE WAYS ABOUT  PHISHING
             phishingAnswers.Add("Phishing is when scammers pretend to be trusted sources to steal your information.");
             phishingAnswers.Add("Phishing attacks often come through fake emails or messages.");
@@ -56,8 +57,6 @@ namespace CyberBot
             ignoring.Add("about");
             ignoring.Add("tell");
             ignoring.Add("me");
-
-            //ignoring questions
             ignoring.Add("a");
             ignoring.Add("above");
             ignoring.Add("across");
@@ -330,10 +329,11 @@ namespace CyberBot
             ignoring.Add("yours");
             ignoring.Add("yourself");
             ignoring.Add("yourselves");
-        }
+        }// end of void load responses
 
         void AskName()
-        {
+        {//start of void ask name
+
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("Enter your name: ");
 
@@ -341,29 +341,33 @@ namespace CyberBot
             name = Console.ReadLine();
 
             while (string.IsNullOrWhiteSpace(name))
-            {
+            {//start of while loop
+
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("Name cannot be empty. Try again: ");
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 name = Console.ReadLine();
-            }
-        }
+            }//end of while loop
+        }//end of void ask name
 
         void WelcomeUser()
-        {
+        {//start of void welcome user
+
             BotReply("Hello " + name );
 
             BotReply("I'm the Cybersecurity Awareness Bot — your personal guide to staying safe online.");
 
             BotReply("You can ask me about passwords, phishing and safe browsing");
 
-        }
+        }//end of void welcome user
 
         void Chat()
-        {
+        {//start of void chat
+
             while (true)
-            {
+            {//start of while loop
+
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("\n" + name + ": ");
                 Console.ResetColor();
@@ -371,84 +375,92 @@ namespace CyberBot
                 string input = Console.ReadLine().ToLower();
 
                 if (string.IsNullOrWhiteSpace(input))
-                {
+                {//start of if statement
+
                     BotReply("Please ask a question or type (exit).");
-                }
+                }//end of if statement
+
                 else if (input == "exit")
-                {
+                {//start of else if statement
+
                     BotReply("Goodbye " + name);
                     break;
-                }
+                }//end of else if statement
+
                 else
-                {
+                {//start of else statement
                     Answer(input);
-                }
-            }
-        }
+                }//end of else statement
+            }//end of while loop
+        }//end of void chat
 
         void BotReply(string message)
-        {
+        {//start of void bot reply
+
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("CyberBot: ");
             Console.ResetColor();
 
             AsciiLogo.TypeText(message);
-        }
+        }//end of void bot reply
 
         public void Answer(string input)
-        {
+        {//start of void answer
             string[] words = input.Split(' ');
 
             //  GREETINGS (FIXED)
             foreach (string word in words)
-            {
+            {//start of foreach loop
                 if (word == "hello" || word == "hi" || word == "hey")
-                {
+                {//start of if statement
+
                     BotReply("Hello " + name + "! How can I assist you today?");
                     return;
-                }
-            }
+
+                }//end of if statement
+            }//end of foreach loop
 
             //  HOW ARE YOU (KEEP THIS BEFORE LOOP)
             if (input.Contains("how are you"))
-            {
+            {//start of if statement
+
                 BotReply("I'm fine how can I help you?");
 
                 return;
-            }
 
-            
+            }//end of if statement
 
-          
 
-            //  MAIN LOGIC
+
+
+            // THE MAIN LOGIC
             foreach (string word in words)
-            {
-                
+            {//start of foreach loop
+
                 if (ignoring.Contains(word)) continue;
 
                 if (word.Contains("phishing"))
-                {
+                {//start of if statement
                     BotReply(GetRandom(phishingAnswers));
                     return;
-                }
+                }// 
                 else if (word.Contains("password"))
-                {
+                {//start of else if statement 
                     BotReply(GetRandom(passwordAnswers));
                     return;
-                }
+                }//end of if statement
                 else if (word.Contains("browsing") || word.Contains("safe"))
-                {
+                {// start of else if statement
                     BotReply(GetRandom(browsingAnswers));
                     return;
-                }
-            }
+                }//end of else if statement
+            }//end of foreach loop  
 
             BotReply("I didn't quite understand " + input+ ",  Could you rephrase?");
-        }
+        }//end of void answer
         string GetRandom(List<string> list)
-        {
+        {//start of string get random
             return list[rand.Next(list.Count)];
-        }
-    }
-}
+        }//end of string get random
+    }//end of class
+}//end of namespace

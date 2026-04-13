@@ -42,10 +42,10 @@ namespace CyberBot
 
             //start by the height
             for (int y = 0; y < resized.Height; y++)
-            {
+            {//then for each line of the height
                 //then width
                 for (int x = 0; x < resized.Width; x++)
-                {
+                {//then for each pixel of the width
                     //color the pixel on x and y
                     Color pixel = resized.GetPixel(x, y);
 
@@ -56,10 +56,10 @@ namespace CyberBot
                     int index = (gray * (asciiChars.Length - 1)) / 255;
 
                     Console.Write(asciiChars[index]);
-                }
+                }//end of for loop for width
 
                 Console.WriteLine();
-            }
+            }// end of for loop for height
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("=================**********************************====================");
@@ -68,7 +68,7 @@ namespace CyberBot
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("=================**********************************====================");
             Console.ResetColor();
-        }
+        }//end of void showheader
 
 
 

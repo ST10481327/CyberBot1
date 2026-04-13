@@ -2,9 +2,9 @@
 using System.Media;
 
 namespace CyberBot
-{
+{//start of namespace
     public class voice_greeting
-    {
+    {// 
         public voice_greeting()
         {//start of voice_greeting constructor
 
@@ -40,5 +40,5 @@ namespace CyberBot
             }//end of catch method
 
         }//end of void PlaySound
-    }
-}
+    }//end of public class
+}//end of namespace
