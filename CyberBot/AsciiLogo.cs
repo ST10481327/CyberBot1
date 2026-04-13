@@ -19,8 +19,7 @@ namespace CyberBot
         private void ShowHeader()
         {//start of void showheader
 
-
-            //path of the logo [ where the logo is ]
+            //path of the logo
             string path = string.Empty;
 
             //auto get the full path
@@ -29,19 +28,21 @@ namespace CyberBot
             //now combine the paths
             path = fullpath.Replace(@"bin\Debug\", "CyberBotimage.jpg");
 
+            Bitmap image;
+
             try
             {
-                Bitmap image = new Bitmap(path);
+                image = new Bitmap(path);
             }
             catch
             {
                 Console.WriteLine("Image not found.");
+                return;
             }
 
-            // Resize for better console fit
-            int width = 75;
-            int height = 35; //(image.Height * width) / image.Width;
-            Bitmap resized = new Bitmap(image, new Size(width, height));
+            // ✅ FIX: use correct constructor
+            Bitmap resized = new Bitmap(image);
+            resized = new Bitmap(resized, width, height);
 
             // Default color , you can set yours before this line
             Console.ForegroundColor = ConsoleColor.Cyan;
