@@ -1,96 +1,165 @@
- CyberBot
+# 🤖 CyberBot
 
-CyberBot is a C# console-based cybersecurity awareness chatbot that educates users about online safety topics such as phishing, password security, and safe browsing. It includes an ASCII art logo, voice greeting, and interactive chat system.
+CyberBot is a **C# console-based chatbot** designed to educate users about cybersecurity topics such as phishing, password safety, and secure browsing.
 
- Features
- Interactive chatbot (console-based)
- Cybersecurity education (phishing, passwords, browsing safety)
- ASCII art startup logo (image-to-ASCII conversion)
- Voice greeting using WAV playback
- Natural conversation handling
- Typing effect for realistic responses
- Stop-word filtering for better NLP-style responses
- CI-safe mode support (GitHub Actions compatible)
- Project Structure
-CyberBot/
-│
-├── Program.cs
-├── human_interraction.cs
-├── AsciiLogo.cs
-├── voice_greeting.cs
-├── greeting.wav
-├── CyberBotimage.jpg
-└── .github/
-    └── workflows/
-        └── ci.yml
-Technologies Used
-C# (.NET)
-System.Console
-System.Drawing (image processing)
-System.Media (audio playback)
-GitHub Actions (CI/CD)
- How to Run
-1. Clone the repository
-git clone https://github.com/ST10481327/CyberBot.git
-cd CyberBot
-2. Open in Visual Studio
-Open the .sln file (or create one if needed)
-Restore NuGet packages if required
-3. Run the project
-dotnet run
- How CyberBot Works
-Displays ASCII logo on startup
-Plays a voice greeting (greeting.wav)
-Asks user for their name
-Starts chatbot session
-Responds to cybersecurity-related questions
+---
+
+## ▶️ How the Code Runs
+
+The application follows a structured execution flow starting from the `Main` method.
+
+### 1. Program Entry Point
+
+The program starts in:
+
+
+Program.cs
+
+
+```csharp
+static void Main(string[] args)
+{
+    new voice_greeting();   // Plays sound
+    new AsciiLogo();        // Displays ASCII logo
+
+    human_interraction bot = new human_interraction();
+    bot.Start();            // Starts chatbot
+}
+2. Voice Greeting
+
+The voice_greeting class:
+
+Plays a .wav audio file (greeting.wav)
+Uses SoundPlayer
+If the file is missing → shows error message
+3. ASCII Logo Display
+
+The AsciiLogo class:
+
+Loads an image (CyberBotimage.jpg)
+Converts it into ASCII characters
+Displays it in the console
+Uses System.Drawing
+
+If the image is missing:
+
+Image not found.
+4. Chatbot Logic
+
+The human_interraction class:
+
+🔹 Step 1: Ask User Name
+Prompts user input
+Prevents empty input
+🔹 Step 2: Welcome Message
+Greets user
+Explains chatbot purpose
+🔹 Step 3: Chat Loop
+Runs continuously until user types exit
+Accepts user input
+Processes keywords
+5. How Responses Work
+
+The chatbot:
+
+Splits user input into words
+Ignores unnecessary words (e.g. "what", "is", "the")
+Matches keywords:
+Keyword	Response Type
+phishing	Phishing info
+password	Password safety
+browsing	Safe browsing tips
 
 Example:
 
-You: what is phishing
-CyberBot: Phishing is when scammers pretend to be trusted sources...
-CI (Continuous Integration)
+User: what is phishing
+Bot: Phishing is when scammers pretend to be trusted sources...
+6. Typing Effect
 
-This project includes a GitHub Actions workflow to automatically build and test the application.
+All responses use:
 
-CI Behavior:
-Builds project on every push
-Runs in non-interactive mode
-Skips chatbot loop using CI=true
-CI Workflow File:
-.github/workflows/ci.yml
+AsciiLogo.TypeText(message);
+
+This creates a typing animation using:
+
+Thread.Sleep(30);
+⚙️ Continuous Integration (CI)
+
+This project uses GitHub Actions to automatically:
+
+Build the project
+Run the application
+Ensure no errors occur
  CI Mode (Important)
 
-To prevent hanging in automated builds:
+Since the chatbot requires user input, CI mode disables interaction:
 
-if (Environment.GetEnvironmentVariable("CI") == "true")
+bool isCI = Environment.GetEnvironmentVariable("CI") == "true";
+
+if (isCI)
 {
-    Console.WriteLine("CI Mode: CyberBot startup only");
+    Console.WriteLine("CI Mode: Skipping chatbot.");
     return;
 }
- Assets Required
 
-Make sure these files exist in your output directory:
+This prevents:
 
-CyberBotimage.jpg → ASCII logo image
-greeting.wav → voice greeting sound
- Known Limitations
-Requires valid image path for ASCII rendering
-Console-based (no GUI)
-Voice playback may not work on all CI environments
-Chat runs indefinitely until user types exit
- Future Improvements
-Add machine learning-based NLP responses
-Convert to web-based chatbot
-Improve ASCII rendering quality
-Add logging and analytics
-Expand cybersecurity knowledge base
+Infinite loops
+Build failures
+ CI Workflow Success
+
+Below is a screenshot showing a successful CI run (green check mark):
+
+ Replace ci-success.png with your actual screenshot file from GitHub Actions.
+
+ How to Run the Project
+1. Clone Repository
+git clone https://github.com/your-username/CyberBot.git
+cd CyberBot
+2. Run Application
+dotnet run
+ Required Files
+
+Ensure these files are included:
+
+CyberBotimage.jpg
+greeting.wav
+
+Set:
+
+Copy to Output Directory → Copy if newer
+Notes
+Works best in Visual Studio or terminal
+CI environment skips interactive features
+Requires .NET SDK installed
  Author
 
-CyberBot Project
-Created as a cybersecurity awareness learning tool in C#.
+Kgatla Mahlatse Norman
+Diploma in IT (Software Development)
+Aspiring Software Developer
 
-If you want, I can also:
- Add badges (build passing, .NET version, etc.)
- Turn this into a GitHub-ready professional portfolio repo
- Or generate a full .sln structure for Visual Studio
+
+---
+
+#  How to add the CI screenshot (VERY IMPORTANT)
+
+### Step 1:
+Go to your GitHub repo → **Actions tab**
+
+### Step 2:
+Click your latest workflow run (green )
+
+### Step 3:
+Take a screenshot
+
+### Step 4:
+Save it as:
+
+ci-success.png
+
+
+### Step 5:
+Put it in your project root (same level as README)
+
+### Step 6:
+Push it:
