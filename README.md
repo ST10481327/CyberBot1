@@ -31,7 +31,7 @@ System.Media (audio playback)
 GitHub Actions (CI/CD)
  How to Run
 1. Clone the repository
-git clone https://github.com/st10481327/CyberBot.git
+git clone https://github.com/ST10481327/CyberBot.git
 cd CyberBot
 2. Open in Visual Studio
 Open the .sln file (or create one if needed)
