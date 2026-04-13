@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Media;
 using System.Text;
 using System.Threading;
@@ -28,7 +29,14 @@ namespace CyberBot
             //now combine the paths
             path = fullpath.Replace(@"bin\Debug\", "CyberBotimage.jpg");
 
-            Bitmap image = new Bitmap(path);
+            try
+            {
+                Bitmap image = new Bitmap(path);
+            }
+            catch
+            {
+                Console.WriteLine("Image not found.");
+            }
 
             // Resize for better console fit
             int width = 75;
